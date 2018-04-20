@@ -19,7 +19,7 @@ public class ControllerTest {
 		databasereader = new DatabaseReader();
 		String expectedResult = "{\"Transaction_ID\":\"1\",\"Amount\":\"£2000\",\"Date\":\"1/12/01\",\"In_or_Out\":\"In\",\"Type:\";\"Credit\",\"Description\";\"Monthly Wage\",\"Transaction_ID\";\"1\"}";
 		String actualResult = databasereader.getJSON();
-		
+		assertEquals(expectedResult,actualResult);
 		
 	}
 
