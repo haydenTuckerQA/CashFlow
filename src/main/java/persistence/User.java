@@ -19,7 +19,29 @@ public class User {
 	private String password;
 	private String email;
 	
-	public User(long id,String firstName,) {
-		
+	public User(long id,String firstName,String lastName,String password,String email){
+		this.id=id;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.password=password;
+		this.email=email;
 	}
+	
+	public long getId() {
+		return this.id;
+	}
+	
+	public String getFistName() {
+		return this.firstName;
+	}
+	
+	public String getLastName() {
+		return this.lastName;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+		
 }
+
