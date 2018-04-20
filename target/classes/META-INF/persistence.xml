@@ -1,1 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<persistence>
+	<persistence-unit name="primary">
+	 <properties>
+         <!-- Properties for Hibernate -->
+         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+         <property name="hibernate.show_sql" value="false" />
+      </properties>
+	</persistence-unit>
+</persistence>

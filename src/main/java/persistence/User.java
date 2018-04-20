@@ -7,6 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.bind.DatatypeConverter;
+
 
 @Entity //specifies class is an entity
 public class User {
@@ -19,13 +24,27 @@ public class User {
 	private String password;
 	private String email;
 	
-	public User(long id,String firstName,String lastName,String password,String email){
+	public User(long id,String firstName,String lastName,String emai,String password){
+		
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(password.getBytes());
+			byte[] digest = md.digest();
+			this.password = DatatypeConverter.printHexBinary(digest).toUpperCase();
+			System.out.println(this.password);
+			
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+
 		this.id=id;
 		this.firstName=firstName;
 		this.lastName=lastName;
-		this.password=password;
 		this.email=email;
+		
 	}
+	
 	
 	public long getId() {
 		return this.id;
