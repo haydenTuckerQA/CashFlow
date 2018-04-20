@@ -24,27 +24,28 @@ public class User {
 	private String password;
 	private String email;
 	
-	public User(long id,String firstName,String lastName,String emai,String password){
-		
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			md.update(password.getBytes());
-			byte[] digest = md.digest();
-			this.password = DatatypeConverter.printHexBinary(digest).toUpperCase();
-			System.out.println(this.password);
-			
-			
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-
+	public User(long id,String firstName,String lastName,String emai,String password){	
+		this.password=hashPassword(password);
+		this.email=email;//encryptEmail(email);
 		this.id=id;
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.email=email;
-		
 	}
 	
+	public String hashPassword(String password) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(password.getBytes());
+			byte[] digest = md.digest();
+			System.out.println("hashed password is: "+DatatypeConverter.printHexBinary(digest).toUpperCase());
+			return DatatypeConverter.printHexBinary(digest).toUpperCase();
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public long getId() {
 		return this.id;
